@@ -9,7 +9,7 @@ function Bestseller() {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/product/list");
+            const response = await axios.get("https://backend-uaa2.onrender.com/api/product/list");
 
             if (response.data.success) {
                 const bestCollectionProducts = response.data.products
