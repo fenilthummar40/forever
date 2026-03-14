@@ -27,7 +27,7 @@ import ProductDetail from "./Pages/Product-Detail.jsx";
 function App() {
 
         useEffect(() => {
-            axios.get("http://localhost:5000/api/test")
+            axios.get("https://backend-uaa2.onrender.com/api/test")
                 .then(res => {
                     console.log(res.data);
                 })
