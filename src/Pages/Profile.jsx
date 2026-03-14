@@ -83,7 +83,7 @@ function Profile() {
             }
 
             const response = await axios.delete(
-                "http://localhost:5000/api/user/delete",
+                "https://backend-uaa2.onrender.com/api/user/delete",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
@@ -123,7 +123,7 @@ function Profile() {
 
         try {
 
-            const response = await axios.post("http://localhost:5000/api/profile/add",
+            const response = await axios.post("https://backend-uaa2.onrender.com/api/profile/add",
                 {first_name, last_name, email, phone, city, pin_code: pinCode, DOB, address}
             );
 
@@ -151,7 +151,7 @@ function Profile() {
 
     const fetchProfile = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/profile/list");
+            const response = await axios.get("https://backend-uaa2.onrender.com/api/profile/list");
 
             if (response.data.success) {
                 setProfile(response.data.profiles);
@@ -171,7 +171,7 @@ function Profile() {
 
     const fetchOrder = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/order/list");
+            const response = await axios.get("https://backend-uaa2.onrender.com/api/order/list");
 
             if (response.data.success) {
                 setOrder(response.data.Orders);
@@ -190,7 +190,7 @@ function Profile() {
     const handleDeleteOrder = async (id) => {
         console.log(id);
         try {
-            const response = await axios.delete(`http://localhost:5000/api/order/delete/${id}`);
+            const response = await axios.delete(`https://backend-uaa2.onrender.com/api/order/delete/${id}`);
 
             if (response.data.success) {
                 toast.success("Order Deleted");
@@ -628,7 +628,7 @@ function Profile() {
                                                                     <div className='flex flex-col sm:flex-row gap-6'>
                                                                         <img
                                                                             className='w-full sm:w-40 rounded-lg object-cover'
-                                                                            src={`http://localhost:5000/uploads/${product.image}`}
+                                                                            src={`https://backend-uaa2.onrender.com/uploads/${product.image}`}
                                                                             alt=""/>
 
                                                                         <div>
@@ -723,7 +723,7 @@ function Profile() {
                                                                     className='flex items-center gap-5 sm:gap-10 flex-col sm:flex-row'>
                                                                     <div>
                                                                         <img className="w-full sm:w-28 rounded-lg"
-                                                                             src={`http://localhost:5000/uploads/${product.image}`}
+                                                                             src={`https://backend-uaa2.onrender.com/uploads/${product.image}`}
                                                                              alt={product.name}/>
                                                                     </div>
                                                                     <div>
