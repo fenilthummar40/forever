@@ -40,7 +40,7 @@ function Checkout() {
         try {
             const user = JSON.parse(localStorage.getItem("user"));
             const response = await axios.post(
-                "http://localhost:5000/api/order/add",
+                "https://backend-uaa2.onrender.com/api/order/add",
                 {
 
                     userid: user.id,
@@ -193,7 +193,7 @@ function Checkout() {
                                 cartItems.map(item => (
                                     <div key={`${item._id}-${item.size}`}
                                          className="flex justify-between gap-4 border dark:border-secondary p-3 rounded-lg mb-4">
-                                        <img src={`http://localhost:5000/uploads/${item.image}`} alt={item.name}
+                                        <img src={`https://backend-uaa2.onrender.com/uploads/${item.image}`} alt={item.name}
                                              className="w-24 rounded-lg"/>
 
                                         <div className="flex-1">
