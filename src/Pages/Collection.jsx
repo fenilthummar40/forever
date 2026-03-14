@@ -37,7 +37,7 @@ function Collection() {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/product/list");
+            const response = await axios.get("https://backend-uaa2.onrender.com/api/product/list");
 
             if (response.data.success) {
                 setProducts(response.data.products);
@@ -196,7 +196,7 @@ function Collection() {
                                     ? 'flex flex-col sm:flex-row gap-4 p-4'
                                     : 'w-10/12 m-auto sm:w-full'}`}>
                                     <div className="relative">
-                                        <img src={`http://localhost:5000/images/${item.image}`} alt={item.name}
+                                        <img src={`https://backend-uaa2.onrender.com/images/${item.image}`} alt={item.name}
                                              className="w-full object-cover rounded-tl-2xl rounded-tr-2xl"/>
                                         <button
                                             className="absolute top-3 left-3 px-4 py-1 bg-primary-gradient text-white rounded-2xl">₹ {item.price}
