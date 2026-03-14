@@ -114,7 +114,7 @@ function BlogDetail() {
 
                         <div className='w-full'>
                             <img className="w-full h-1/2 sm:h-[600px] object-cover"
-                                 src={`http://localhost:5000/images/${product.image}`} alt={product.name}/>
+                                 src={`https://backend-uaa2.onrender.com/images/${product.image}`} alt={product.name}/>
 
                             <div className='p-5'>
                                 <div className='flex items-center gap-5'>
