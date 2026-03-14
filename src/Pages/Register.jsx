@@ -21,7 +21,7 @@ function Register() {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/api/user/register",
+                "https://backend-uaa2.onrender.com/api/user/register",
                 {name, email, password,}
             );
 
