@@ -13,7 +13,7 @@ function Blog() {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/product/list");
+            const response = await axios.get("https://backend-uaa2.onrender.com/api/product/list");
 
             if (response.data.success) {
                 const bestCollectionProducts = response.data.products
@@ -49,7 +49,7 @@ function Blog() {
                             <div key={item._id}
                                  className="border dark:border-secondary rounded-2xl shadow-lg group overflow-hidden">
                                 <img className="w-full object-cover rounded-tl-2xl rounded-tr-2xl"
-                                     src={`http://localhost:5000/images/${item.image}`} alt={item.name}/>
+                                     src={`https://backend-uaa2.onrender.com/images/${item.image}`} alt={item.name}/>
 
                                 <div className="py-4 px-5">
                                     <div className='flex items-center gap-5'>
