@@ -15,7 +15,7 @@ function Subscription() {
 
     const fetchSubscription = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/subscription/list");
+            const response = await axios.get("https://backend-uaa2.onrender.com/api/subscription/list");
 
             if (response.data.success) {
                 setSubscription(response.data.subscriptions || []);
