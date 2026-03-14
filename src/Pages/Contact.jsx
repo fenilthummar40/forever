@@ -32,7 +32,7 @@ function Contact() {
 
         try {
             const response = await axios.post(
-                "http://localhost:5000/api/contact/add",
+                "https://backend-uaa2.onrender.com/api/contact/add",
                 {first_name, last_name, email, phone, message,}
             );
 
