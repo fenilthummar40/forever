@@ -54,7 +54,7 @@ function Cart() {
                                 {cartItems.map(item => (
                                     <tr key={`${item._id}-${item.size}`} className="border dark:border-secondary">
                                         <td className="p-4">
-                                            <img src={`http://localhost:5000/uploads/${item.image}`} alt={item.name}
+                                            <img src={`https://backend-uaa2.onrender.com/uploads/${item.image}`} alt={item.name}
                                                  className="w-24 rounded-lg"/>
                                         </td>
                                         <td className="p-4 font-medium text-xs sm:text-sm dark:text-light">{item.name}</td>
