@@ -39,7 +39,7 @@ function ProductDetail() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/product/list");
+                const response = await axios.get("https://backend-uaa2.onrender.com/api/product/list");
 
                 if (response.data.success) {
                     setProducts(response.data.products);
@@ -92,7 +92,7 @@ function ProductDetail() {
             <section className="my-20">
                 <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 px-5">
                     <div>
-                        <img className="w-full rounded-2xl" src={`http://localhost:5000/images/${product.image}`}
+                        <img className="w-full rounded-2xl" src={`https://backend-uaa2.onrender.com/images/${product.image}`}
                              alt={product.name}/>
                     </div>
 
