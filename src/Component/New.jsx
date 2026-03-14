@@ -10,7 +10,7 @@ function New() {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get("http://localhost:5000/api/product/list");
+            const response = await axios.get("https://backend-uaa2.onrender.com/api/product/list");
 
             if (response.data.success) {
                 const newadd = response.data.products
@@ -45,7 +45,7 @@ function New() {
                              className="border dark:border-secondary rounded-2xl w-10/12 m-auto sm:w-full shadow-sm group">
                             <div className="relative">
                                 <img className="w-full object-cover rounded-tl-2xl rounded-tr-2xl"
-                                     src={`http://localhost:5000/images/${item.image}`} alt={item.name}/>
+                                     src={`https://backend-uaa2.onrender.com/images/${item.image}`} alt={item.name}/>
 
                                 <button
                                     className="absolute top-3 left-3 px-4 py-1 bg-primary-gradient text-white rounded-2xl">₹ {item.price}
