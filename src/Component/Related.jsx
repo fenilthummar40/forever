@@ -10,7 +10,7 @@ function Related({category, subCategory, currentId}) {
     useEffect(() => {
         const fetchRelatedProducts = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/product/list");
+                const response = await axios.get("https://backend-uaa2.onrender.com/api/product/list");
 
                 if (response.data.success) {
                     const filtered = response.data.products
@@ -47,7 +47,7 @@ function Related({category, subCategory, currentId}) {
                     <div key={item._id}
                          className="border rounded-2xl shadow-sm group dark:border-secondary">
                         <div className="relative">
-                            <img src={`http://localhost:5000/images/${item.image}`} alt={item.name}
+                            <img src={`https://backend-uaa2.onrender.com/images/${item.image}`} alt={item.name}
                                  className="w-full object-cover rounded-t-2xl"/>
 
                             <button
