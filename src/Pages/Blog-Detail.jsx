@@ -21,7 +21,7 @@ function BlogDetail() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get("http://localhost:5000/api/product/list");
+                const response = await axios.get("https://backend-uaa2.onrender.com/api/product/list");
 
                 if (response.data.success) {
                     setProducts(response.data.products);
@@ -82,7 +82,7 @@ function BlogDetail() {
         e.preventDefault();
         try {
 
-            const response = await axios.post("http://localhost:5000/api/feedback/add",
+            const response = await axios.post("https://backend-uaa2.onrender.com/api/feedback/add",
                 {first_name, last_name, email, feedback,});
 
             if (response.data.success) {
