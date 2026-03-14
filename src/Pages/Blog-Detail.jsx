@@ -220,7 +220,7 @@ function BlogDetail() {
 
                             <div className="mt-10 relative group overflow-hidden">
                                 <img className="w-full sm:h-[600px] object-cover cursor-pointer"
-                                     src={`http://localhost:5000/images/${product.image}`} alt={product.name}/>
+                                     src={`https://backend-uaa2.onrender.com/images/${product.image}`} alt={product.name}/>
 
                                 <div
                                     className="absolute inset-0 bg-black/50 p-5 hidden group-hover:flex flex-col justify-end transition-all duration-300">
