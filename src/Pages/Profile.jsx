@@ -122,9 +122,9 @@ function Profile() {
         e.preventDefault();
 
         try {
-
+             const user = JSON.parse(localStorage.getItem("user"));
             const response = await axios.post("https://backend-uaa2.onrender.com/api/profile/add",
-                {first_name, last_name, email, phone, city, pin_code: pinCode, DOB, address}
+                {userid: user.id, first_name, last_name, email, phone, city, pin_code: pinCode, DOB, address}
             );
 
             if (response.data.success) {
