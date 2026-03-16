@@ -191,6 +191,8 @@ function Profile() {
         fetchOrder();
     }, []);
 
+    const userOrder = order.filter((item) => item.userid === userId);
+
 
     const handleDeleteOrder = async (id) => {
         console.log(id);
@@ -614,134 +616,190 @@ function Profile() {
 
                                             {isEdit ? (
                                                 <div className='mx-5'>
-                                                    {order.map((orderItem) =>
-                                                        orderItem.item.map((product) => (
-                                                            <div key={product._id}
-                                                                 className='mt-5 border rounded-xl p-5 sm:p-8 shadow-sm dark:border-secondary'>
-                                                                <div className="flex items-center justify-end">
-                                                                    <img className="w-5 cursor-pointer"
-                                                                         src={assets.bin_icon} alt=""
-                                                                         onClick={() => handleDeleteOrder(orderItem._id)}/>
-                                                                </div>
-                                                                <div
-                                                                    className='grid grid-cols-1 lg:grid-cols-2 gap-10 mt-5'>
-                                                                    <div className='flex flex-col sm:flex-row gap-6'>
+                                                    {userOrder.map((orderItem) =>
+                                                            orderItem.item.map((product) => (
+                                                                <div key={product._id}
+                                                                     className='mt-5 border rounded-xl p-5 sm:p-8 shadow-sm dark:border-secondary'>
+
+                                                                    <div className="flex items-center justify-end">
                                                                         <img
-                                                                            className='w-full sm:w-40 rounded-lg object-cover'
-                                                                            src={`https://backend-uaa2.onrender.com/uploads/${product.image}`}
-                                                                            alt=""/>
+                                                                            className="w-5 cursor-pointer"
+                                                                            src={assets.bin_icon}
+                                                                            alt=""
+                                                                            onClick={() => handleDeleteOrder(orderItem._id)}
+                                                                        />
+                                                                    </div>
 
-                                                                        <div>
-                                                                            <h1 className='font-semibold text-lg dark:text-white'>{product.name}</h1>
+                                                                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 mt-5'>
 
-                                                                            <p className='text-secondary text-sm mt-2 leading-relaxed dark:text-light'>{product.description}</p>
+                                                                        <div className='flex flex-col sm:flex-row gap-6'>
+                                                                            <img
+                                                                                className='w-full sm:w-40 rounded-lg object-cover'
+                                                                                src={`https://backend-uaa2.onrender.com/uploads/${product.image}`}
+                                                                                alt=""
+                                                                            />
 
-                                                                            <div className='mt-1 text-sm'>
-                                                                                <p className='mb-2 dark:text-light'><span
-                                                                                    className='font-medium '>Size : </span> {product.size}
+                                                                            <div>
+                                                                                <h1 className='font-semibold text-lg dark:text-white'>
+                                                                                    {product.name}
+                                                                                </h1>
+
+                                                                                <p className='text-secondary text-sm mt-2 leading-relaxed dark:text-light'>
+                                                                                    {product.description}
                                                                                 </p>
-                                                                                <p className='mb-2 dark:text-light'><span
-                                                                                    className='font-medium'>Quantity : </span> {product.qty}
+
+                                                                                <div className='mt-1 text-sm'>
+                                                                                    <p className='mb-2 dark:text-light'>
+                                                                                        <span className='font-medium'>Size : </span> {product.size}
+                                                                                    </p>
+
+                                                                                    <p className='mb-2 dark:text-light'>
+                                                                                        <span className='font-medium'>Quantity : </span> {product.qty}
+                                                                                    </p>
+
+                                                                                    <p className='mb-2 dark:text-light'>
+                                                                                        <span className='font-medium'>Price: </span> ₹{product.price}
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
+
+                                                                            <div>
+                                                                                <h2 className='font-semibold mb-2 dark:text-white'>
+                                                                                    Delivery Address
+                                                                                </h2>
+                                                                                <p className='text-sm text-secondary leading-relaxed dark:text-light'>
+                                                                                    {orderItem.address}
                                                                                 </p>
-                                                                                <p className='mb-2 dark:text-light'><span
-                                                                                    className='font-medium'>Price: </span>₹
-                                                                                    {product.price}</p>
                                                                             </div>
+
+                                                                            <div>
+                                                                                <h2 className='font-semibold mb-2 dark:text-white'>
+                                                                                    Shipping Updates
+                                                                                </h2>
+                                                                                <p className='text-sm text-secondary dark:text-light'>
+                                                                                    {orderItem.email}
+                                                                                </p>
+                                                                                <p className='text-sm text-secondary dark:text-light'>
+                                                                                    {orderItem.phone}
+                                                                                </p>
+                                                                            </div>
+
                                                                         </div>
                                                                     </div>
 
-                                                                    <div
-                                                                        className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
+                                                                    <div className='border my-8 dark:border-secondary'></div>
 
-                                                                        <div>
-                                                                            <h2 className='font-semibold mb-2 dark:text-white'>Delivery
-                                                                                Address</h2>
-                                                                            <p className='text-sm text-secondary leading-relaxed dark:text-light'>{orderItem.address}</p>
-                                                                        </div>
+                                                                    <div className="flex items-center justify-between">
+                                                                        <p className='text-sm text-secondary dark:text-white'>
+                                                                            Preparing to ship on :
+                                                                            <span className='font-medium text-dark dark:text-light'>
+                        {new Date().toLocaleDateString()}
+                    </span>
+                                                                        </p>
 
-                                                                        <div>
-                                                                            <h2 className='font-semibold mb-2 dark:text-white'>Shipping
-                                                                                Updates</h2>
-                                                                            <p className='text-sm text-secondary dark:text-light'>{orderItem.email}</p>
-                                                                            <p className='text-sm text-secondary dark:text-light'>{orderItem.phone}</p>
-                                                                        </div>
-
+                                                                        <p>{orderItem.status}</p>
                                                                     </div>
-                                                                </div>
 
-                                                                <div
-                                                                    className='border my-8 dark:border-secondary'></div>
+                                                                    <div className='mt-10 border p-5 rounded-lg bg-secondary/10 mb-5 dark:border-secondary'>
+                                                                        <div className='flex items-center justify-between gap-5 sm:flex-row flex-col'>
 
-                                                                <div className="flex items-center justify-between">
-                                                                    <p className='text-sm text-secondary dark:text-white'>
-                                                                        Preparing to ship on : <span
-                                                                        className='font-medium text-dark dark:text-light'>{Date.now()}</span>
-                                                                    </p>
-                                                                    <p>{orderItem.status}</p>
-                                                                </div>
-                                                                <div
-                                                                    className='mt-10 border p-5 rounded-lg bg-secondary/10 mb-5 dark:border-secondary'>
-                                                                    <div
-                                                                        className='flex items-center justify-between gap-5 sm:flex-row flex-col'>
-                                                                        <div>
-                                                                            <h1 className='text-lg font-semibold mb-2 dark:text-white'>Billing
-                                                                                address</h1>
-                                                                            <p className='text-secondary text-sm dark:text-light'>{orderItem.address}</p>
-                                                                        </div>
-                                                                        <div className='sm:w-1/4 w-full'>
-                                                                            <div
-                                                                                className='flex items-center justify-between mb-2'>
-                                                                                <h6 className='text-lg font-normal text-secondary dark:text-white'>Payment
-                                                                                    Method</h6>
-                                                                                <span
-                                                                                    className="text-light">{orderItem.PaymentMethod}</span>
+                                                                            <div>
+                                                                                <h1 className='text-lg font-semibold mb-2 dark:text-white'>
+                                                                                    Billing address
+                                                                                </h1>
+                                                                                <p className='text-secondary text-sm dark:text-light'>
+                                                                                    {orderItem.address}
+                                                                                </p>
                                                                             </div>
-                                                                            <div
-                                                                                className='border my-2 dark:border-secondary'></div>
-                                                                            <div
-                                                                                className='flex items-center justify-between'>
-                                                                                <h6 className='text-lg font-semibold dark:text-white'>Total</h6>
-                                                                                <span
-                                                                                    className="dark:text-light">₹ {orderItem.amount}</span>
+
+                                                                            <div className='sm:w-1/4 w-full'>
+
+                                                                                <div className='flex items-center justify-between mb-2'>
+                                                                                    <h6 className='text-lg font-normal text-secondary dark:text-white'>
+                                                                                        Payment Method
+                                                                                    </h6>
+
+                                                                                    <span className="text-light">
+                                {orderItem.PaymentMethod}
+                            </span>
+                                                                                </div>
+
+                                                                                <div className='border my-2 dark:border-secondary'></div>
+
+                                                                                <div className='flex items-center justify-between'>
+                                                                                    <h6 className='text-lg font-semibold dark:text-white'>
+                                                                                        Total
+                                                                                    </h6>
+
+                                                                                    <span className="dark:text-light">
+                                ₹ {orderItem.amount}
+                            </span>
+                                                                                </div>
+
                                                                             </div>
+
                                                                         </div>
                                                                     </div>
+
                                                                 </div>
-                                                            </div>
-                                                        ))
+                                                            ))
                                                     )}
                                                 </div>
                                             ) : (
 
                                                 <div>
-                                                    {order.map((orderItem) =>
+                                                    {userOrder.map((orderItem) =>
                                                         orderItem.item.map((product) => (
-                                                            <div key={product._id}
-                                                                 className='border-b p-5 flex items-center justify-between gap-5 sm:gap-10 flex-col sm:flex-row'>
+                                                            <div
+                                                                key={product._id}
+                                                                className='border-b p-5 flex items-center justify-between gap-5 sm:gap-10 flex-col sm:flex-row'
+                                                            >
 
-                                                                <div
-                                                                    className='flex items-center gap-5 sm:gap-10 flex-col sm:flex-row'>
+                                                                <div className='flex items-center gap-5 sm:gap-10 flex-col sm:flex-row'>
+
                                                                     <div>
-                                                                        <img className="w-full sm:w-28 rounded-lg"
-                                                                             src={`https://backend-uaa2.onrender.com/uploads/${product.image}`}
-                                                                             alt={product.name}/>
+                                                                        <img
+                                                                            className="w-full sm:w-28 rounded-lg"
+                                                                            src={`https://backend-uaa2.onrender.com/uploads/${product.image}`}
+                                                                            alt={product.name}
+                                                                        />
                                                                     </div>
+
                                                                     <div>
-                                                                        <h1 className='font-medium text-sm sm:text-lg dark:text-white'>{product.name}</h1>
-                                                                        <p className='font-normal text-sm mt-1 text-secondary dark:text-light'>{product.description}</p>
-                                                                        <p className='mt-1 dark:text-light'>Size
-                                                                            : {product.size}</p>
-                                                                        <p className='mt-1 dark:text-light'>Quantity
-                                                                            : {product.qty}</p>
+                                                                        <h1 className='font-medium text-sm sm:text-lg dark:text-white'>
+                                                                            {product.name}
+                                                                        </h1>
+
+                                                                        <p className='font-normal text-sm mt-1 text-secondary dark:text-light'>
+                                                                            {product.description}
+                                                                        </p>
+
+                                                                        <p className='mt-1 dark:text-light'>
+                                                                            Size : {product.size}
+                                                                        </p>
+
+                                                                        <p className='mt-1 dark:text-light'>
+                                                                            Quantity : {product.qty}
+                                                                        </p>
                                                                     </div>
+
                                                                 </div>
 
-                                                                <div
-                                                                    className='flex items-end justify-end flex-col sm:w-40 w-full'>
-                                                                    <h6 className='font-semibold sm:text-lg text-sm dark:text-white'>₹ {product.price}</h6>
-                                                                    <p className='text-secondary mt-2 text-sm cursor-pointer dark:text-light'>Leave
-                                                                        review</p>
+                                                                <div className='flex items-end justify-end flex-col sm:w-40 w-full'>
+
+                                                                    <h6 className='font-semibold sm:text-lg text-sm dark:text-white'>
+                                                                        ₹ {product.price}
+                                                                    </h6>
+
+                                                                    <p className='text-secondary mt-2 text-sm cursor-pointer dark:text-light'>
+                                                                        Leave review
+                                                                    </p>
+
                                                                 </div>
+
                                                             </div>
                                                         ))
                                                     )}
