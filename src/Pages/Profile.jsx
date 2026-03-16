@@ -166,6 +166,11 @@ function Profile() {
         fetchProfile();
     }, []);
 
+    const user = JSON.parse(localStorage.getItem("user"));
+    const userId = user?.id;
+
+    const userProfile = profile.filter((item) => item.userid === userId);
+
 
     const [order, setOrder] = useState([]);
 
@@ -282,7 +287,7 @@ function Profile() {
                                             </div>
                                         </div>
 
-                                        {profile.map((item) => (
+                                        {userProfile.map((item) => (
                                             <div key={item._id}>
                                                 <h6 className='font-bold text-lg dark:text-white'>{item.first_name}</h6>
                                                 <p className='text-secondary text-sm dark:text-light'>{item.email}</p>
@@ -315,9 +320,8 @@ function Profile() {
 
                                             {!isEdit ? (
                                                 <div className="mt-5">
-                                                    {profile.map((item) => (
-                                                        <div key={item._id}
-                                                             className="flex gap-2 sm:gap-24 sm:flex-row flex-col">
+                                                    {userProfile.map((item) => (
+                                                        <div key={item._id} className="flex gap-2 sm:gap-24 sm:flex-row flex-col">
 
                                                             <div>
                                                                 <div>
@@ -326,20 +330,17 @@ function Profile() {
                                                                 </div>
 
                                                                 <div className='mt-2'>
-                                                                    <span
-                                                                        className="text-secondary dark:text-light">Email:</span>
+                                                                    <span className="text-secondary dark:text-light">Email:</span>
                                                                     <h6 className="font-semibold dark:text-white">{item.email}</h6>
                                                                 </div>
 
                                                                 <div className='mt-2'>
-                                                                    <span
-                                                                        className="text-secondary dark:text-light">City:</span>
+                                                                    <span className="text-secondary dark:text-light">City:</span>
                                                                     <h6 className="font-semibold dark:text-white">{item.city}</h6>
                                                                 </div>
 
                                                                 <div className='mt-2'>
-                                                                    <span
-                                                                        className="text-secondary dark:text-light">DOB:</span>
+                                                                    <span className="text-secondary dark:text-light">DOB:</span>
                                                                     <h6 className="font-semibold dark:text-white">{item.DOB}</h6>
                                                                 </div>
                                                             </div>
@@ -351,8 +352,7 @@ function Profile() {
                                                                 </div>
 
                                                                 <div className='mt-2'>
-                                                                    <span
-                                                                        className="text-secondary dark:text-light">Phone Number:</span>
+                                                                    <span className="text-secondary dark:text-light">Phone Number:</span>
                                                                     <h6 className="font-semibold dark:text-white">{item.phone}</h6>
                                                                 </div>
 
@@ -362,11 +362,11 @@ function Profile() {
                                                                 </div>
 
                                                                 <div className='mt-2'>
-                                                                    <span
-                                                                        className="text-secondary dark:text-light">Address:</span>
+                                                                    <span className="text-secondary dark:text-light">Address:</span>
                                                                     <h6 className="font-semibold dark:text-white">{item.address}</h6>
                                                                 </div>
                                                             </div>
+
                                                         </div>
                                                     ))}
 
@@ -494,7 +494,7 @@ function Profile() {
                                             </div>
                                             <div className='flex items-center justify-between gap-10'>
 
-                                                {profile.map((item) => (
+                                                {userProfile.map((item) => (
                                                     <div key={item._id}>
                                                         <h6 className='font-semibold text-lg dark:text-white'>{item.email}</h6>
                                                     </div>
