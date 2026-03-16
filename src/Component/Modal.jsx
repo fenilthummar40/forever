@@ -17,7 +17,7 @@ const Modal = ({isOpen, onClose, subscription}) => {
         try {
             const user = JSON.parse(localStorage.getItem("user"));
             const response = await axios.post(
-                "https://backend-uaa2.onrender.com/subscriptionpayment/add",
+                "https://backend-uaa2.onrender.com/api/subscriptionpayment/add",
                 {
                     userid: user.id,
                     price: subscription.price,
