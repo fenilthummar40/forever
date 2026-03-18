@@ -10,11 +10,11 @@ import {
     IconBell,
     IconBrandBilibili,
     IconEdit,
-    IconHeart,
+    IconHeart, IconMenu,
     IconMenuOrder,
     IconShieldLock,
     IconStarFilled,
-    IconUser
+    IconUser, IconX
 } from "@tabler/icons-react";
 import axios from "axios";
 import {toast} from "react-toastify";
@@ -122,7 +122,9 @@ function Profile() {
         e.preventDefault();
 
         try {
-             const user = JSON.parse(localStorage.getItem("user"));
+
+            const user = JSON.parse(localStorage.getItem("user"));
+            console.log(user.id);
             const response = await axios.post("https://backend-uaa2.onrender.com/api/profile/add",
                 {userid: user.id, first_name, last_name, email, phone, city, pin_code: pinCode, DOB, address}
             );
@@ -193,7 +195,6 @@ function Profile() {
 
     const userOrder = order.filter((item) => item.userid === userId);
 
-
     const handleDeleteOrder = async (id) => {
         console.log(id);
         try {
@@ -209,6 +210,8 @@ function Profile() {
         }
     };
 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
 
     return (
         <>
@@ -220,9 +223,27 @@ function Profile() {
 
                 <section className='my-10 sm:my-20'>
                     <div className='max-w-7xl mx-auto bg-secondary/10 p-5 rounded-lg'>
-                        <div className='flex justify-between gap-4'>
+                        <div className='flex justify-between gap-4 relative'>
+                            {isSidebarOpen && (
+                                <div
+                                    className="fixed inset-0 bg-black/40 z-40 md:hidden"
+                                    onClick={() => setIsSidebarOpen(false)}
+                                ></div>
+                            )}
                             <div
-                                className='border w-1/5 p-4 bg-white dark:bg-darkMode/20 dark:border-secondary rounded-lg hidden md:block'>
+                                className={`
+          fixed top-0 left-0 h-full z-50 w-64 p-4 bg-white dark:bg-darkMode/20 dark:border-secondary border rounded-lg
+          transform transition-all duration-300 ease-in-out
+          ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
+          md:translate-x-0 md:static md:w-1/5
+        `}>
+
+                                <div className="flex justify-end md:hidden mb-5">
+                                    <button onClick={() => setIsSidebarOpen(false)}>
+                                        <IconX/>
+                                    </button>
+                                </div>
+
                                 <ul>
                                     <li>
                                         <button onClick={() => setActiveTab("profile")}
@@ -271,13 +292,15 @@ function Profile() {
                                             <IconBrandBilibili className='w-5'/> Billing
                                         </button>
                                     </li>
-
                                 </ul>
-
                             </div>
+
                             <div
                                 className='border w-full p-4 bg-white dark:bg-darkMode/20 dark:border-secondary rounded-lg'>
-                                <h1 className='font-bold font-lexend text-lg dark:text-white'>Profile</h1>
+                                <h1 className='font-bold font-lexend text-lg dark:text-white flex items-center gap-5'>
+                                    <IconMenu
+                                        className="block md:hidden cursor-pointer"
+                                        onClick={() => setIsSidebarOpen(true)}/> Profile </h1>
 
                                 <div
                                     className='border rounded-lg p-4 mt-5 flex items-center justify-between dark:border-secondary'>
@@ -323,7 +346,8 @@ function Profile() {
                                             {!isEdit ? (
                                                 <div className="mt-5">
                                                     {userProfile.map((item) => (
-                                                        <div key={item._id} className="flex gap-2 sm:gap-24 sm:flex-row flex-col">
+                                                        <div key={item._id}
+                                                             className="flex gap-2 sm:gap-24 sm:flex-row flex-col">
 
                                                             <div>
                                                                 <div>
@@ -332,17 +356,20 @@ function Profile() {
                                                                 </div>
 
                                                                 <div className='mt-2'>
-                                                                    <span className="text-secondary dark:text-light">Email:</span>
+                                                                    <span
+                                                                        className="text-secondary dark:text-light">Email:</span>
                                                                     <h6 className="font-semibold dark:text-white">{item.email}</h6>
                                                                 </div>
 
                                                                 <div className='mt-2'>
-                                                                    <span className="text-secondary dark:text-light">City:</span>
+                                                                    <span
+                                                                        className="text-secondary dark:text-light">City:</span>
                                                                     <h6 className="font-semibold dark:text-white">{item.city}</h6>
                                                                 </div>
 
                                                                 <div className='mt-2'>
-                                                                    <span className="text-secondary dark:text-light">DOB:</span>
+                                                                    <span
+                                                                        className="text-secondary dark:text-light">DOB:</span>
                                                                     <h6 className="font-semibold dark:text-white">{item.DOB}</h6>
                                                                 </div>
                                                             </div>
@@ -364,7 +391,8 @@ function Profile() {
                                                                 </div>
 
                                                                 <div className='mt-2'>
-                                                                    <span className="text-secondary dark:text-light">Address:</span>
+                                                                    <span
+                                                                        className="text-secondary dark:text-light">Address:</span>
                                                                     <h6 className="font-semibold dark:text-white">{item.address}</h6>
                                                                 </div>
                                                             </div>
@@ -630,7 +658,8 @@ function Profile() {
                                                                         />
                                                                     </div>
 
-                                                                    <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 mt-5'>
+                                                                    <div
+                                                                        className='grid grid-cols-1 lg:grid-cols-2 gap-10 mt-5'>
 
                                                                         <div className='flex flex-col sm:flex-row gap-6'>
                                                                             <img
@@ -650,7 +679,8 @@ function Profile() {
 
                                                                                 <div className='mt-1 text-sm'>
                                                                                     <p className='mb-2 dark:text-light'>
-                                                                                        <span className='font-medium'>Size : </span> {product.size}
+                                                                                        <span
+                                                                                            className='font-medium'>Size : </span> {product.size}
                                                                                     </p>
 
                                                                                     <p className='mb-2 dark:text-light'>
@@ -658,13 +688,15 @@ function Profile() {
                                                                                     </p>
 
                                                                                     <p className='mb-2 dark:text-light'>
-                                                                                        <span className='font-medium'>Price: </span> ₹{product.price}
+                                                                                        <span
+                                                                                            className='font-medium'>Price: </span> ₹{product.price}
                                                                                     </p>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
 
-                                                                        <div className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
+                                                                        <div
+                                                                            className='grid grid-cols-1 sm:grid-cols-2 gap-6'>
 
                                                                             <div>
                                                                                 <h2 className='font-semibold mb-2 dark:text-white'>
@@ -690,12 +722,14 @@ function Profile() {
                                                                         </div>
                                                                     </div>
 
-                                                                    <div className='border my-8 dark:border-secondary'></div>
+                                                                    <div
+                                                                        className='border my-8 dark:border-secondary'></div>
 
                                                                     <div className="flex items-center justify-between">
                                                                         <p className='text-sm text-secondary dark:text-white'>
                                                                             Preparing to ship on :
-                                                                            <span className='font-medium text-dark dark:text-light'>
+                                                                            <span
+                                                                                className='font-medium text-dark dark:text-light'>
                         {new Date().toLocaleDateString()}
                     </span>
                                                                         </p>
@@ -703,8 +737,10 @@ function Profile() {
                                                                         <p>{orderItem.status}</p>
                                                                     </div>
 
-                                                                    <div className='mt-10 border p-5 rounded-lg bg-secondary/10 mb-5 dark:border-secondary'>
-                                                                        <div className='flex items-center justify-between gap-5 sm:flex-row flex-col'>
+                                                                    <div
+                                                                        className='mt-10 border p-5 rounded-lg bg-secondary/10 mb-5 dark:border-secondary'>
+                                                                        <div
+                                                                            className='flex items-center justify-between gap-5 sm:flex-row flex-col'>
 
                                                                             <div>
                                                                                 <h1 className='text-lg font-semibold mb-2 dark:text-white'>
@@ -717,7 +753,8 @@ function Profile() {
 
                                                                             <div className='sm:w-1/4 w-full'>
 
-                                                                                <div className='flex items-center justify-between mb-2'>
+                                                                                <div
+                                                                                    className='flex items-center justify-between mb-2'>
                                                                                     <h6 className='text-lg font-normal text-secondary dark:text-white'>
                                                                                         Payment Method
                                                                                     </h6>
@@ -727,9 +764,11 @@ function Profile() {
                             </span>
                                                                                 </div>
 
-                                                                                <div className='border my-2 dark:border-secondary'></div>
+                                                                                <div
+                                                                                    className='border my-2 dark:border-secondary'></div>
 
-                                                                                <div className='flex items-center justify-between'>
+                                                                                <div
+                                                                                    className='flex items-center justify-between'>
                                                                                     <h6 className='text-lg font-semibold dark:text-white'>
                                                                                         Total
                                                                                     </h6>
@@ -758,7 +797,8 @@ function Profile() {
                                                                 className='border-b p-5 flex items-center justify-between gap-5 sm:gap-10 flex-col sm:flex-row'
                                                             >
 
-                                                                <div className='flex items-center gap-5 sm:gap-10 flex-col sm:flex-row'>
+                                                                <div
+                                                                    className='flex items-center gap-5 sm:gap-10 flex-col sm:flex-row'>
 
                                                                     <div>
                                                                         <img
@@ -788,7 +828,8 @@ function Profile() {
 
                                                                 </div>
 
-                                                                <div className='flex items-end justify-end flex-col sm:w-40 w-full'>
+                                                                <div
+                                                                    className='flex items-end justify-end flex-col sm:w-40 w-full'>
 
                                                                     <h6 className='font-semibold sm:text-lg text-sm dark:text-white'>
                                                                         ₹ {product.price}
