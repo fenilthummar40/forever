@@ -232,7 +232,7 @@ function Profile() {
                             )}
                             <div
                                 className={`
-          fixed top-0 left-0 h-full z-50 w-64 p-4 bg-white dark:bg-darkMode/20 dark:border-secondary border rounded-lg
+          fixed top-0 left-0 h-full md:z-40 z-50 w-64 p-4 bg-white dark:bg-darkMode/20 dark:border-secondary border rounded-lg
           transform transition-all duration-300 ease-in-out
           ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0 md:static md:w-1/5
