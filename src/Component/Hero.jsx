@@ -6,7 +6,9 @@ import {IconArrowRight} from "@tabler/icons-react";
 function Hero() {
 
     const sectionStyle = {
-        backgroundImage: `url(${assets.hero_img})`,
+        backgroundImage: `
+        linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+        url(${assets.hero_img})`,
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
@@ -24,10 +26,13 @@ function Hero() {
                         offering comfort, confidence, and elegance for every occasion. From everyday essentials to
                         statement outfits, Fashion Forever Collection is made for those who believe great fashion never
                         goes out of style.</p>
-                    <div className='mt-5'>
+                    <div className='mt-5 flex items-center gap-5'>
                         <button
-                            className='px-5 py-2 border-2 flex items-center gap-4 rounded-2xl text-sm sm:text-lg text-white'>See
-                            More <IconArrowRight/></button>
+                            className='px-5 py-2 border-2 flex items-center gap-4 rounded-2xl text-sm sm:text-lg text-white hover:bg-white hover:text-black transition'>Shop
+                            Men<IconArrowRight/></button>
+                        <button
+                            className='px-5 py-2 border-2 flex items-center gap-4 rounded-2xl text-sm sm:text-lg text-white hover:bg-white hover:text-black transition'>Shop
+                            Women <IconArrowRight/></button>
                     </div>
                 </div>
             </div>
