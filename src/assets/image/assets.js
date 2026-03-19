@@ -117,6 +117,10 @@ import register_form from './register-form.jpg';
 import dark_logo from './dark-logo.png';
 import error_page from './error.png';
 
+import user1 from './user1.jpg';
+import user2 from './user2.jpg';
+import user3 from './user3.jpg';
+
 export const assets = {
 
     p_img1,
@@ -237,6 +241,10 @@ export const assets = {
     register_form,
     dark_logo,
     error_page,
+
+    user1,
+    user2,
+    user3,
 }
 
 
