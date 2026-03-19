@@ -47,9 +47,11 @@ function Blog() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mx-5">
                         {products.map((item) => (
                             <div key={item._id}
-                                 className="border dark:border-secondary rounded-2xl shadow-lg group overflow-hidden">
-                                <img className="w-full object-cover rounded-tl-2xl rounded-tr-2xl"
-                                     src={`https://backend-uaa2.onrender.com/images/${item.image}`} alt={item.name}/>
+                                 className="dark:border-secondary rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer border dark:border-0 group">
+                                <div className="overflow-hidden">
+                                    <img className="w-full object-cover transform group-hover:scale-110 transition duration-500 rounded-tl-2xl rounded-tr-2xl"
+                                         src={`https://backend-uaa2.onrender.com/images/${item.image}`} alt={item.name}/>
+                                </div>
 
                                 <div className="py-4 px-5">
                                     <div className='flex items-center gap-5'>
@@ -64,7 +66,7 @@ function Blog() {
 
                                     <div className="flex gap-1 mt-2">
                                         {[...Array(5)].map((_, i) => (
-                                            <IconStarFilled key={i} className="w-4 h-4 text-primary"/>
+                                            <IconStarFilled key={i} className="w-4 h-4 text-yellow-500"/>
                                         ))}
                                     </div>
 
@@ -72,8 +74,8 @@ function Blog() {
 
                                     <div className="flex items-center justify-between mt-4">
                                         <button
-                                            className="px-5 py-1 bg-primary-gradient rounded-2xl text-white font-medium">
-                                            View More
+                                            className="px-5 py-2 bg-primary-gradient rounded-full text-white font-medium hover:scale-105 transition">Shop
+                                            Now
                                         </button>
 
                                         <Link to={`/blog/${item._id}`}
