@@ -191,15 +191,16 @@ function Collection() {
                                 ${layout === 'list' && 'grid-cols-1'}`}
                         >
                             {paginatedProducts.map((item) => (
-                                <div key={item._id} className={`border dark:border-secondary rounded-2xl shadow-sm group overflow-hidden
+                                <div key={item._id} className={`bg-white dark:bg-darkMode rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer border dark:border-0 group
                                         ${layout === 'list'
                                     ? 'flex flex-col sm:flex-row gap-4 p-4'
                                     : 'w-10/12 m-auto sm:w-full'}`}>
-                                    <div className="relative">
-                                        <img src={`https://backend-uaa2.onrender.com/images/${item.image}`} alt={item.name}
-                                             className="w-full object-cover rounded-tl-2xl rounded-tr-2xl"/>
+                                    <div className="relative overflow-hidden">
+                                        <img src={`https://backend-uaa2.onrender.com/images/${item.image}`}
+                                             alt={item.name}
+                                             className="w-full object-cover transform group-hover:scale-110 transition duration-500"/>
                                         <button
-                                            className="absolute top-3 left-3 px-4 py-1 bg-primary-gradient text-white rounded-2xl">₹ {item.price}
+                                            className="absolute top-3 left-3 px-3 py-1 text-sm bg-primary-gradient text-white rounded-2xl">₹ {item.price}
                                         </button>
                                     </div>
 
@@ -210,7 +211,7 @@ function Collection() {
                                         <div className="flex items-center justify-between mt-2">
                                             <div className="flex gap-1">
                                                 {[...Array(5)].map((_, i) => (
-                                                    <IconStarFilled key={i} className="w-4 h-4 text-primary"/>
+                                                    <IconStarFilled key={i} className="w-4 h-4 text-yellow-500"/>
                                                 ))}
                                             </div>
                                             <p className="text-sm text-secondary dark:text-light">(99+ review)</p>
@@ -220,7 +221,7 @@ function Collection() {
 
                                         <div className="flex items-center justify-between mt-4">
                                             <button
-                                                className="px-5 py-1 bg-primary-gradient rounded-2xl text-white font-medium text-lg">Shop
+                                                className="px-5 py-2 bg-primary-gradient rounded-full text-white font-medium hover:scale-105 transition">Shop
                                                 Now
                                             </button>
 
