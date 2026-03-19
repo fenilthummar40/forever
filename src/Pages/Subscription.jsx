@@ -52,40 +52,48 @@ function Subscription() {
 
             <section className="my-10 sm:my-20">
                 <div className="max-w-7xl mx-auto">
-                    <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 mx-5">
+                    <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8 mx-5">
+                        {subscription.map((item, index) => {
+                            const isPopular = index === 1;
+                            return (
+                                <div key={item._id}
+                                     className={`relative rounded-2xl p-8 border bg-white dark:bg-dark transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 ${isPopular ? "border-primary shadow-lg scale-105" : "border-gray-200 dark:border-secondary"}`}>
 
-                        {subscription.map((item) => (
-                            <div key={item._id}
-                                 className="border rounded-lg shadow-sm bg-light/10 p-5 dark:border-secondary">
-                                <span className="text-secondary text-sm dark:text-light">{item.status}</span>
+                                    {isPopular && (
+                                        <span
+                                            className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs px-4 py-1 rounded-full shadow">Most Popular</span>
+                                    )}
+                                    <p className="text-gray-500 text-sm dark:text-light">{item.status}</p>
+                                    <h1 className="mt-2 text-4xl font-bold dark:text-white">₹ {item.price}
+                                        <span className="text-lg text-gray-400 font-medium">/month</span>
+                                    </h1>
+                                    <div className="my-6 border-t dark:border-secondary"></div>
+                                    <div className="space-y-4">
+                                        <p className="flex items-center gap-3 text-sm dark:text-light">
+                                            <IconCheck className="w-4 text-primary"/>{item.discount}
+                                        </p>
+                                        <p className="flex items-center gap-3 text-sm dark:text-light">
+                                            <IconCheck className="w-4 text-primary"/>{item.premium}
+                                        </p>
+                                        <p className="flex items-center gap-3 text-sm dark:text-light">
+                                            <IconCheck className="w-4 text-primary"/>{item.build}
+                                        </p>
+                                        <p className="flex items-center gap-3 text-sm dark:text-light">
+                                            <IconCheck className="w-4 text-primary"/>{item.processing}
+                                        </p>
+                                    </div>
 
-                                <h1 className="mt-2 font-bold md:text-4xl text-xl dark:text-white">₹ {item.price}
-                                    <span className="text-lg text-secondary font-medium dark:text-light">/month</span>
-                                </h1>
-
-                                <div className="mt-5">
-                                    <p className="flex items-center gap-4 mt-2 dark:text-light">
-                                        <IconCheck className="w-5 text-primary dark:text-secondary"/>{item.discount}
-                                    </p>
-                                    <p className="flex items-center gap-4 mt-2 dark:text-light">
-                                        <IconCheck className="w-5 text-primary dark:text-secondary"/>{item.premium}
-                                    </p>
-                                    <p className="flex items-center gap-4 mt-2 dark:text-light">
-                                        <IconCheck className="w-5 text-primary dark:text-secondary"/>{item.build}
-                                    </p>
-                                    <p className="flex items-center gap-4 mt-2 dark:text-light">
-                                        <IconCheck className="w-5 text-primary dark:text-secondary"/>{item.processing}
-                                    </p>
+                                    <button onClick={() => openModal(item)}
+                                            className={`w-full mt-8 py-3 rounded-full font-medium transition-all duration-300 ${isPopular
+                                                ? "bg-primary text-white hover:opacity-90"
+                                                : "border border-gray-300 hover:bg-primary hover:text-white dark:text-white dark:border-secondary"
+                                            }`}> Choose Plan
+                                    </button>
+                                    <p className="mt-3 text-xs text-gray-400 text-center">Choose the best plan for
+                                        you.</p>
                                 </div>
-
-                                <button onClick={() => openModal(item)}
-                                        className="w-full py-2 border mt-5 rounded-full hover:bg-primary-gradient hover:text-white dark:border-secondary dark:text-white">Submit
-                                </button>
-                                <p className="mt-2 text-secondary text-sm dark:text-light">Choose the best plan for
-                                    you.</p>
-                            </div>
-                        ))}
-
+                            );
+                        })}
                     </div>
                 </div>
             </section>
