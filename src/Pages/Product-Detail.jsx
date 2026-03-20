@@ -102,7 +102,7 @@ function ProductDetail() {
 
                         <div className="flex gap-1 mt-4">
                             {[...Array(5)].map((_, i) => (
-                                <IconStarFilled key={i} className="w-4 h-4 text-primary"/>))}
+                                <IconStarFilled key={i} className="w-4 h-4 text-yellow-400"/>))}
                         </div>
 
                         <div className="flex gap-3 mt-6">
