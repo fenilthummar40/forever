@@ -7,6 +7,7 @@ import {useCart} from "../Context/CartContext";
 import {assets} from "../assets/image/assets.js";
 import axios from "axios";
 import {toast} from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Checkout() {
     const SHIPPING = 50;
@@ -28,6 +29,8 @@ function Checkout() {
     const [city, setCity] = useState("");
     const [pinCode, setPinCode] = useState("");
     const [paymentMethod, setPaymentMethod] = useState("COD");
+
+    const navigate = useNavigate();
 
     const onSubmitHandler = async (e) => {
         e.preventDefault();
@@ -73,6 +76,8 @@ function Checkout() {
                 setCity("");
                 setPinCode("");
                 setPaymentMethod("COD")
+
+                navigate("/Order-success");
             }
 
         } catch (error) {
