@@ -863,14 +863,14 @@ function Profile() {
 
                                                 {orderr.map(({img, title, description, price}, i) => (
                                                     <div key={i}
-                                                         className='border  rounded-2xl shadow-sm group overflow-hidden dark:border-secondary'>
+                                                         className='rounded-2xl dark:border-secondary shadow-sm hover:shadow-xl transition duration-300 overflow-hidden cursor-pointer border dark:border-0 group'>
 
-                                                        <div className="relative">
+                                                        <div className="relative overflow-hidden">
                                                             <img src={img} alt={title}
-                                                                 className="w-full object-cover rounded-tl-2xl rounded-tr-2xl"/>
+                                                                 className="w-full object-cover transform group-hover:scale-110 transition duration-500 rounded-tl-2xl rounded-tr-2xl"/>
 
                                                             <button
-                                                                className="absolute top-3 left-3 px-4 py-1 bg-primary-gradient text-white rounded-2xl">{price}
+                                                                className="absolute top-3 left-3 text-xs px-3 py-1 bg-primary-gradient text-white rounded-2xl">{price}
                                                             </button>
 
 
@@ -878,13 +878,13 @@ function Profile() {
 
                                                         <div className="py-4 px-5">
                                                             <h6 className="text-lg font-semibold font-lexend dark:text-white line-clamp-2">{title}</h6>
-                                                            <p className="text-sm text-secondary line-clamp-4 mt-2 dark:text-light">{description}</p>
+                                                            <p className="text-sm text-secondary line-clamp-2 mt-2 dark:text-light">{description}</p>
 
                                                             <div className="flex items-center justify-between mt-2">
                                                                 <div className="flex gap-1">
                                                                     {[...Array(5)].map((_, i) => (
                                                                         <IconStarFilled key={i}
-                                                                                        className="w-4 h-4 text-primary"/>))}
+                                                                                        className="w-4 h-4 text-yellow-400"/>))}
                                                                 </div>
                                                                 <p className="text-sm text-secondary dark:text-light">(99+
                                                                     review)</p>
