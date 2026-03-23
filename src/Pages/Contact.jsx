@@ -32,9 +32,10 @@ function Contact() {
         e.preventDefault();
 
         try {
+           const user = JSON.parse(localStorage.getItem("user"));
             const response = await axios.post(
                 "https://backend-uaa2.onrender.com/api/contact/add",
-                {first_name, last_name, email, phone, message,}
+                {userid: user.id, first_name, last_name, email, phone, message,}
             );
 
             if (response.data.success) {
