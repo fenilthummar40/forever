@@ -1,4 +1,4 @@
-import React , {useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css'
 import Home from "./Pages/Home.jsx";
@@ -23,18 +23,23 @@ import ErrorPage from "./Pages/Error-Page.jsx";
 import Subscription from "./Pages/Subscription.jsx";
 import axios from "axios";
 import ProductDetail from "./Pages/Product-Detail.jsx";
+import Maintenance from "./Component/Maintenance.jsx";
+import PrivacyPolicy from "./Pages/PrivacyPolicy.jsx";
+import TermsConditions from "./Pages/TermsConditions.jsx";
+import ReturnPolicy from "./Pages/ReturnPolicy.jsx";
+import FrequentlyQuestions from "./Pages/FrequentlyQuestions.jsx";
 
 function App() {
 
-        useEffect(() => {
-            axios.get("https://backend-uaa2.onrender.com/api/test")
-                .then(res => {
-                    console.log(res.data);
-                })
-                .catch(err => {
-                    console.log(err);
-                });
-        }, []);
+    useEffect(() => {
+        axios.get("https://backend-uaa2.onrender.com/api/test")
+            .then(res => {
+                console.log(res.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }, []);
 
     return (
         <>
@@ -46,7 +51,7 @@ function App() {
                     <Route path="/Blog" element={<Blog/>}/>
                     <Route path="/Contact" element={<Contact/>}/>
                     <Route path="/Product-Detail" element={<Productdetail/>}/>
-                    <Route path="/product/:id" element={<ProductDetail />} />
+                    <Route path="/product/:id" element={<ProductDetail/>}/>
                     <Route path="/Blog/:id" element={<BlogDetail/>}/>
                     <Route path="/Cart" element={<Cart/>}/>
                     <Route path="/Checkout" element={<Checkout/>}/>
@@ -59,9 +64,14 @@ function App() {
                     <Route path="/Newpassword" element={<Newpassword/>}/>
                     <Route path="/Landing" element={<Landing/>}/>
                     <Route path="/Subscription" element={<Subscription/>}/>
+                    <Route path="/Maintenance" element={<Maintenance/>}/>
+                    <Route path="/PrivacyPolicy" element={<PrivacyPolicy/>}/>
+                    <Route path="/TermsConditions" element={<TermsConditions/>}/>
+                    <Route path="/ReturnPolicy" element={<ReturnPolicy/>}/>
+                    <Route path="/FrequentlyQuestions" element={<FrequentlyQuestions/>}/>
                     <Route path="/Error-Page" element={<ErrorPage/>}/>
 
-                    <Route path="*" element={<ErrorPage />} />
+                    <Route path="*" element={<ErrorPage/>}/>
                 </Routes>
 
                 <ToastContainer
