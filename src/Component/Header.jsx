@@ -76,6 +76,7 @@ function Navbar() {
         clearCart();
     };
 
+    const [openDropdown, setOpenDropdown] = useState(false);
     return (
         <>
 
@@ -101,7 +102,7 @@ function Navbar() {
                             <img className="w-32 dark:block hidden" src={assets.dark_logo} alt="logo"/>
 
                             <div className="hidden sm:block w-full">
-                                <div className="flex justify-center space-x-4">
+                                <div className="flex justify-center space-x-4 items-center">
                                     {[
                                         {name: "Home", path: "/"},
                                         {name: "About", path: "/about"},
@@ -109,13 +110,54 @@ function Navbar() {
                                         {name: "Blog", path: "/blog"},
                                         {name: "Contact", path: "/contact"},
                                     ].map((item) => (
-                                        <NavLink key={item.name} to={item.path} className={({isActive}) =>
-                                            `px-3 py-2 font-medium lg:text-lg ${
-                                                isActive
-                                                    ? "text-primary"
-                                                    : "text-dark dark:text-white hover:text-primary"}`}>{item.name}
+                                        <NavLink key={item.name} to={item.path}
+                                                 className={({isActive}) =>
+                                                     `px-3 py-2 font-medium lg:text-lg ${
+                                                         isActive
+                                                             ? "text-primary"
+                                                             : "text-dark dark:text-white hover:text-primary"
+                                                     }`}>{item.name}
                                         </NavLink>
                                     ))}
+
+                                    <div className="relative"
+                                         onMouseEnter={() => setOpenDropdown(true)}
+                                         onMouseLeave={() => setOpenDropdown(false)}>
+                                        <button
+                                            className="px-3 py-2 font-medium lg:text-lg text-dark dark:text-white hover:text-primary">Page
+                                        </button>
+
+                                        {openDropdown && (
+                                            <div
+                                                className="absolute top-full left-0 w-52 bg-white dark:bg-gray-800 dark:text-white shadow-lg rounded-md overflow-hidden z-50">
+
+                                                <Link to="/Maintenance"
+                                                      className="block px-4 py-2 text-sm hover:bg-secondary/10 rounded-t-xl">Maintenance
+                                                </Link>
+
+                                                <Link to="/PrivacyPolicy"
+                                                      className="block px-4 py-2 text-sm hover:bg-secondary/10 rounded-t-xl">Privacy
+                                                    Policy
+                                                </Link>
+
+                                                <Link to="/TermsConditions"
+                                                      className="block px-4 py-2 text-sm hover:bg-secondary/10 rounded-t-xl">Terms
+                                                    Conditions
+                                                </Link>
+
+                                                <Link to="/ReturnPolicy"
+                                                      className="block px-4 py-2 text-sm hover:bg-secondary/10 rounded-t-xl">Return
+                                                    Policy
+                                                </Link>
+
+                                                <Link to="/FrequentlyQuestions"
+                                                      className="block px-4 py-2 text-sm hover:bg-secondary/10 rounded-t-xl">Frequently
+                                                    Questions
+                                                </Link>
+
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -129,7 +171,7 @@ function Navbar() {
                             <div className="relative group">
                                 <IconUser className="w-5 h-5 cursor-pointer dark:text-white"/>
                                 <div
-                                    className="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                                    className="absolute right-0 mt-2 w-40 bg-white dark:bg-gray-800 dark:text-white rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
 
                                     <Link to="/profile"
                                           className="block px-4 py-2 text-sm hover:bg-secondary/10 rounded-t-xl">Profile
